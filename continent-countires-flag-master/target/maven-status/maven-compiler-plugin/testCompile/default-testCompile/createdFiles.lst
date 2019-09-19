@@ -1,0 +1,4 @@
+com\quest\continents\country\flag\poc\service\ContinentCountriesFlagServiceTest.class
+com\quest\continents\country\flag\poc\ContinentsCountryFlagPocApplicationTests.class
+com\quest\continents\country\flag\poc\controller\ContinentsCountryControllerTest.class
+com\quest\continents\country\flag\poc\repository\ContinentRepositoryTest.class
