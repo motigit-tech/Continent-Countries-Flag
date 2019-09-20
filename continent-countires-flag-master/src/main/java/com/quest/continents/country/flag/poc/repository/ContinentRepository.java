@@ -1,22 +1,28 @@
+/**
+ * @author Moti
+ */
 package com.quest.continents.country.flag.poc.repository;
+
+import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.stereotype.Repository;
 
-import com.quest.continents.country.flag.poc.model.Continent;
-import com.quest.continents.country.flag.poc.model.Countries;
+import com.quest.continents.country.flag.poc.document.ContinentDocument;
 
 
-
-@Repository("continentRepository")
-public interface ContinentRepository extends MongoRepository<Continent, String> {
+/**
+ * The Interface ContinentRepository.
+ */
+public interface ContinentRepository extends MongoRepository<ContinentDocument, String> {
 	
-	@Query(value = "{ 'continent' : ?0}")
-	Continent findByContinentName(final String continent);
+	/**
+	 * Find by continent name.
+	 *
+	 * @param continent the continent
+	 * @return the list
+	 */
+	@Query("{continent: { $regex: ?0,  $options: 'i' } })")
+	List<ContinentDocument> findByContinentName(String continent);
 
-	@Query("{'countries.name': ?0}")
-	Countries findByCountry(final String country);
-
-	
 }

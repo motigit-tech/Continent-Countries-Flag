@@ -1,16 +1,15 @@
+/**
+ * @author Moti
+ */
 package com.quest.continents.country.flag.poc.service.impl;
 
-import java.util.Arrays;
-/*
- * @Auther Moti
- */
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.quest.continents.country.flag.poc.model.Continent;
-import com.quest.continents.country.flag.poc.model.Countries;
+import com.quest.continents.country.flag.poc.document.ContinentDocument;
+import com.quest.continents.country.flag.poc.document.CountryDocument;
 import com.quest.continents.country.flag.poc.repository.ContinentRepository;
 import com.quest.continents.country.flag.poc.repository.CountryRepository;
 
@@ -20,32 +19,42 @@ import lombok.extern.slf4j.Slf4j;
 @Service("continentCountriesFlagService")
 public class ContinentCountriesFlagServiceImpl implements ContinentCountriesFlagService {
 	
+	/* Autowired continent repository */
 	@Autowired
 	ContinentRepository continentRepository;
 	
+	/* Autowired country repository */
 	@Autowired
 	CountryRepository countryFlagRepository;	
 
+	/* It returns continent to provide continent
+	 * @Param continent
+	 * @Return List<ContinentDocument> List of continent
+	 */
 	@Override
-	public List<Countries> findByContientId(String continent) {
+	public List<ContinentDocument> findByContientName(String continent) {
 		
-		return Arrays.asList(continentRepository.findByContinentName(continent).getCountries());
-				//.orElseThrow(() -> new ResourceNotFoundException("Continent not found on :: " + contient));
-
-	}
-
-	@Override
-	public Countries findByCountryId(String country) {
-		
-		return continentRepository.findByCountry(country);
-		
-		//return countryFlagRepository.findById(country)
-				//.orElseThrow(() -> new ResourceNotFoundException("country not found on :: " + country));
-		
+		return continentRepository.findByContinentName(continent);
 				
 	}
+    
+	/* It returns Country to provide country name
+	 * @Param countryName
+	 * @Return List<CountryDocument> List of countries
+	 */
 	@Override
-	public List<Continent> findAll() {
+	public List<CountryDocument> findByCountryName(String countryName) {
+		
+		return countryFlagRepository.findByCountryName(countryName);
+		
+		
+	}
+	
+	/* It returns all continents 
+	 * @Return List<ContinentDocument> List of continent
+	 */
+	@Override
+	public List<ContinentDocument> findAll() {
 		 return continentRepository.findAll();
 	}
 

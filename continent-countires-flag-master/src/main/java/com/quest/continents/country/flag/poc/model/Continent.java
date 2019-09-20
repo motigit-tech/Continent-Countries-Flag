@@ -1,21 +1,37 @@
+/**
+ * @author Moti
+ */
 package com.quest.continents.country.flag.poc.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.io.Serializable;
+import java.util.List;
 
-@Document(collection = "content")
-public class Continent
+
+public class Continent implements Serializable
 {
-    private String continent;
-	private Countries[] countries;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1182745813564234412L;
+	
+	/** The continent. */
+	private String continent;
+	
+	/** The countries. */
+	private List<Countries> countries;
 	
 
-    public Continent(String continent, Countries[] countries) {
+    public Continent(String continent, List<Countries> countries) {
 		super();
 		this.continent = continent;
 		this.countries = countries;
 	}
 
-
+    /**
+	 * Gets the continent.
+	 *
+	 * @return the continent
+	 */
     public String getContinent ()
     {
         return continent;
@@ -25,17 +41,25 @@ public class Continent
     {
         this.continent = continent;
     }
-
-    public Countries[] getCountries ()
+    
+    /**
+	 * Gets the countries.
+	 *
+	 * @return the countries
+	 */
+    public List<Countries> getCountries ()
     {
         return countries;
     }
 
-    public void setCountries (Countries[] countries)
+    public void setCountries (List<Countries> countries)
     {
         this.countries = countries;
     }
-
+    
+    /* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
     @Override
     public String toString()
     {

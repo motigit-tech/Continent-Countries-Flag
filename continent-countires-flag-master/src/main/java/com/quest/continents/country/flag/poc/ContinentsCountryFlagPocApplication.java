@@ -1,5 +1,12 @@
+/**
+ * 
+ */
 package com.quest.continents.country.flag.poc;
 
+/**
+ * @author Moti
+ *
+ */
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,14 +15,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.mongodb.MongoDbFactory;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
-import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
-import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
-import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
-import com.quest.continents.country.flag.poc.model.Continent;
+import com.quest.continents.country.flag.poc.document.ContinentDocument;
 import com.quest.continents.country.flag.poc.repository.ContinentRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class ContinentsCountryFlagPocApplication {
 
 	        return args -> {
 
-	        	 List <Continent>list =  continentRepository.findAll();
+	        	 List<ContinentDocument>list =  continentRepository.findAll();
 	            
 	            list.forEach((c) -> {
 	            	System.out.println(c.getContinent());
@@ -46,18 +47,7 @@ public class ContinentsCountryFlagPocApplication {
 
 	        };
 	 	}
-	        @Bean
-	        public MongoTemplate mongoTemplate(MongoDbFactory mongoDbFactory,
-	                                           MongoMappingContext context) {
-
-	            MappingMongoConverter converter =
-	                    new MappingMongoConverter(new DefaultDbRefResolver(mongoDbFactory), context);
-	            converter.setTypeMapper(new DefaultMongoTypeMapper(null));
-
-	            MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory, converter);
-
-	            return mongoTemplate;
-
-	        }     
+	             
 
 }
+

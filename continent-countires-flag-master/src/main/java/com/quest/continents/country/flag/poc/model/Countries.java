@@ -1,9 +1,24 @@
+/**
+ * @author Moti
+ */
 package com.quest.continents.country.flag.poc.model;
 
-public class Countries
-{
-    private String flag;
+import java.io.Serializable;
 
+/**
+ * The Class Countres.
+ */
+public class Countries implements Serializable {
+	    
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1807383900653659635L;
+
+	/** The flag. */
+	private String flag;
+    
+	/** The name. */
     private String name;
 
     public Countries(String name, String flag) {
@@ -11,6 +26,11 @@ public class Countries
 		this.flag = flag;
 	}
 
+    /**
+	 * Gets the flag.
+	 *
+	 * @return the flag
+	 */
 	public String getFlag ()
     {
         return flag;
@@ -21,6 +41,11 @@ public class Countries
         this.flag = flag;
     }
 
+    /**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
     public String getName ()
     {
         return name;
@@ -31,6 +56,9 @@ public class Countries
         this.name = name;
     }
 
+    /* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
     @Override
     public String toString()
     {
