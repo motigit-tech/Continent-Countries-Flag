@@ -16,10 +16,18 @@ public class ContinentDocument {
 	/** The continent id. */
 	@Id
 	private String continentId;
+	
 
 	/** The continent. */
 	private String continent;
 
+	/** Constructor */
+	public ContinentDocument(String continentId, String continent) {
+		super();
+		this.continentId = continentId;
+		this.continent = continent;
+	}
+	
 	/**
 	 * Gets the continent id.
 	 *

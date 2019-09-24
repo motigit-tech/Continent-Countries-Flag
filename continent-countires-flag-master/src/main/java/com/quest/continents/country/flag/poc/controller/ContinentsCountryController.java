@@ -47,7 +47,7 @@ public class ContinentsCountryController {
      */
 	 @GetMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json; charset=UTF-8")
 	public ResponseEntity<?> getAllContinentFlag() {
-		return new ResponseEntity<List<ContinentDocument>>(continentCountriesFlagService.findAll(), HttpStatus.OK);
+		return new ResponseEntity<List<ContinentDocument>>(continentCountriesFlagService.findAllContinent(), HttpStatus.OK);
 	}
 		
      /*
@@ -65,7 +65,7 @@ public class ContinentsCountryController {
 		Optional<SearchCriteria> checkSearchCriteriaNull = Optional.ofNullable(searchCriteria);
 		if (!checkSearchCriteriaNull.isPresent() || null == checkSearchCriteriaNull.get().getFieldName()) {
 			
-			return new ResponseEntity<List<ContinentDocument>>(continentCountriesFlagService.findAll(), HttpStatus.OK);
+			return new ResponseEntity<List<ContinentDocument>>(continentCountriesFlagService.findAllContinent(), HttpStatus.OK);
 
 		} 
 		

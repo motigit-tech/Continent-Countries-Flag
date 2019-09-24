@@ -12,7 +12,9 @@ import com.quest.continents.country.flag.poc.document.CountryDocument;
 public interface ContinentCountriesFlagService {
 	
 
-	public List<ContinentDocument> findAll();
+	public List<ContinentDocument> findAllContinent();
+	
+	public List<CountryDocument> findAllCountries();
 	
 	/* To returns all countries to provide continent name */
 	public List<ContinentDocument> findByContientName(String contient);

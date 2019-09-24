@@ -16,7 +16,7 @@ public class CountryDocument {
 	/** The country id. */
 	@Id
 	private String countryId;
-
+	
 	/** The name. */
 	private String name;
 
@@ -25,6 +25,15 @@ public class CountryDocument {
 
 	/** The continent id. */
 	private String continentId;
+	
+	public CountryDocument(String countryId, String name, String flag, String continentId) {
+		super();
+		this.countryId = countryId;
+		this.name = name;
+		this.flag = flag;
+		this.continentId = continentId;
+	}
+
 
 	/**
 	 * Gets the country id.

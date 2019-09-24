@@ -54,8 +54,17 @@ public class ContinentCountriesFlagServiceImpl implements ContinentCountriesFlag
 	 * @Return List<ContinentDocument> List of continent
 	 */
 	@Override
-	public List<ContinentDocument> findAll() {
+	public List<ContinentDocument> findAllContinent() {
 		 return continentRepository.findAll();
+	}
+   
+	/* It returns all continents 
+	 * @Return List<ContinentDocument> List of continent
+	 */
+
+	@Override
+	public List<CountryDocument> findAllCountries() {
+		 return countryFlagRepository.findAll();
 	}
 
 	

@@ -16,9 +16,9 @@ import com.quest.continents.country.flag.poc.ContinentsCountryFlagPocApplication
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ContinentsCountryFlagPocApplication.class)
 @SpringBootTest
-public class ContinentRepositoryTest {
+public class CountryRepositoryTest {
 
-    @Autowired private ContinentRepository continentRepo;
+    @Autowired private CountryRepository countryRepository;
     
     @Before
     public void reset() {
@@ -28,17 +28,17 @@ public class ContinentRepositoryTest {
        
    @Test
     public void testExists() {   
-         assertNotNull(continentRepo.findByContinentName("America"));
+         assertNotNull(countryRepository.findByCountryName("India"));
      }
 
    @Test
-   public void testContinentAll() {
-	   assertEquals(5, continentRepo.findAll().size());
+   public void testCountryAll() {
+	   assertEquals(25, countryRepository.findAll().size());
    }
    
    @Test
    public void testContentNotExist() {
-	   assertEquals(0, continentRepo.findByContinentName("ABC").size());
+	   assertEquals(0, countryRepository.findByCountryName("ABC").size());
    }
    
 }
