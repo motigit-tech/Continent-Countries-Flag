@@ -62,6 +62,8 @@ public class AuditAndMeterInterceptor implements HandlerInterceptor {
 		}
 
 		writeAuditMessage((Long) startTime, (Long) endTime, request, ex);
+		
+		
 	}
 
 	// ----------------------------------------------------------------------------
@@ -69,12 +71,11 @@ public class AuditAndMeterInterceptor implements HandlerInterceptor {
 
 		String requestURL = request.getRequestURL().toString();
 		String queryString = request.getQueryString();		
-		String clientIP = request.getHeader("clientIP");
+		
 
 		StringBuilder json = new StringBuilder();
 		StringUtil.append(json, "{");
-		StringUtil.append(json, "messageType: ", "MS_API_AUDIT", ",");		
-		StringUtil.append(json, "clientIP: ", clientIP, ",");
+		StringUtil.append(json, "messageType: ", "MS_API_AUDIT", ",");			
 		StringUtil.append(json, "requestURL: ", requestURL, ",");
 		StringUtil.append(json, "queryString: ", queryString, ",");		
 		StringUtil.append(json, "startTime: ", startTime, ",");
