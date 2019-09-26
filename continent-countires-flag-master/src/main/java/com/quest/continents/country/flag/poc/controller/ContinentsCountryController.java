@@ -7,23 +7,29 @@ package com.quest.continents.country.flag.poc.controller;
  */
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Meta;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quest.continents.country.flag.poc.document.ContinentDocument;
 import com.quest.continents.country.flag.poc.document.CountryDocument;
 import com.quest.continents.country.flag.poc.model.SearchCriteria;
-import com.quest.continents.country.flag.poc.service.impl.ContinentCountriesFlagService;
+import com.quest.continents.country.flag.poc.service.ContinentCountriesFlagService;
+import com.quest.continents.country.flag.poc.service.IMetricService;
 import com.quest.continents.country.flag.poc.util.annotation.AuditAndMeter;
 import com.quest.continents.country.flag.poc.util.annotation.AuditAndMeterInterceptor;
 
@@ -40,6 +46,9 @@ public class ContinentsCountryController {
     
 	@Autowired
 	ContinentCountriesFlagService continentCountriesFlagService;
+	
+	@Autowired
+	IMetricService metricService;
 		
     /*
      * getAllContinentFlag: It's rest api service which has providing all continent's country.
@@ -92,5 +101,12 @@ public class ContinentsCountryController {
 		}
 
 	}
+	
+	
+    @GetMapping(path = "/metric", consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public ConcurrentMap<String, ConcurrentHashMap<Integer, Integer>> getMetric() {
+        return metricService.getFullMetric();
+    }
 
 }

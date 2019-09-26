@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.quest.continents.country.flag.poc.service.IMetricService;
 import com.quest.continents.country.flag.poc.util.StringUtil;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +24,10 @@ public class AuditAndMeterInterceptor implements HandlerInterceptor {
 
 	/** Logger object */
 	private static final Logger LOGGER = LogManager.getLogger(AuditAndMeterInterceptor.class);
+	
+	@Autowired
+	IMetricService metricService;
+		
 
 	/** Called Before Method Execution. */
 	@Override
@@ -63,6 +71,8 @@ public class AuditAndMeterInterceptor implements HandlerInterceptor {
 
 		writeAuditMessage((Long) startTime, (Long) endTime, request, ex);
 		
+		/* To Update API metrics */
+		metricService.increaseCount(request.getPathInfo(), response.getStatus());
 		
 	}
 
